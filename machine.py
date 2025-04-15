@@ -1,6 +1,9 @@
 import json
 import re
 
+class Ticket_machine:
+    
+
 with open("prices.json", "r", encoding="UTF-8") as jf:
     prices = json.load(jf)
 
