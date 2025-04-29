@@ -1,13 +1,16 @@
+from cart import Cart
+from payment import Payment_method
+from ticket import Ticket
 import json
-import re
 
 class Ticket_machine:
-    
-
-with open("prices.json", "r", encoding="UTF-8") as jf:
-    prices = json.load(jf)
+    def __init__(self):
+        self.cart = cart.Cart()
+        with open("prices.json", "r", encoding="UTF-8") as jf:
+            self.prices = json.load(jf)
 
 def display_menu(menu):
+    menu = self.prices
     print("Jaką opcję biletu chcesz kupić? ")
     options = list(menu.keys())
     for index, option in enumerate(options):

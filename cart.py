@@ -1,17 +1,19 @@
-from ticket import Bilet
+import ticket
+
 class Cart:
-        def __init__(self):
-            self.bilety: List[Bilet] = []
-
-        def dodaj_bilet(self, bilet: Bilet):
-            self.bilety.append(bilet)
-
-        def suma(self) -> float:
-            return sum(bilet.cena for bilet in self.bilety)
-
-        def wyswietl(self):
-            if not self.bilety:
-                print("Koszyk jest pusty.")
-            for bilet in self.bilety:
-                print(bilet)
-            print(f"SUMA: {self.suma():.2f} zł")
+    def __init__(self):
+        self.tickets:list[ticket.Ticket] = []
+        self.value = 0.0
+    def add_ticket(self, item:ticket.Ticket):
+        self.tickets.append(item)
+        self.value += item.get_price()
+    def get_value(self):
+        return self.value
+    def display(self) -> None:
+        print("Zawartość koszyka: ")
+        for index, ticket in enumerate(self.tickets):
+            print(f"{index+1}. {ticket}: \t {ticket.get_price()} zł")
+        print(f"Wartość koszyka: {self.value} zł")
+    def recalculate_value(self):
+        self.value = sum(item.get_price() for item in self.tickets)
+        return self.value
