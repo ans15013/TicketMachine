@@ -2,6 +2,7 @@ from cart import Cart
 from payment import Payment_method
 from ticket import Ticket
 import json
+import re
 
 class Ticket_machine:
     def __init__(self):
@@ -9,7 +10,8 @@ class Ticket_machine:
         with open("prices.json", "r", encoding="UTF-8") as jf:
             self.prices = json.load(jf)
 
-def display_menu(menu):
+
+def display_menu(self, menu=self.prices, category=None, group=None) -> ticket.Ticket:
     menu = self.prices
     print("Jaką opcję biletu chcesz kupić? ")
     options = list(menu.keys())
@@ -25,9 +27,12 @@ def display_menu(menu):
         return display_menu(menu)
     menu = menu[options[choice]]
     if isinstance(menu ,dict):
-        return display_menu(menu)
+        if category:
+            group = options[choice]
+        else:
+            return self.display_menu(menu)
     else:
-        return (option, menu)
+        return(ticket.Ticket)
 
 def register_payment(cart):
     total = sum(price for _, price in cart)
